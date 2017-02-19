@@ -117,6 +117,18 @@ board.closenewcomment = function(){
     console.log(addbtnid);
     $("#add_"+addbtnid).show();
 };
+
+board.formatDate = function(date){
+    var day = date.getDate();
+    // month start from 0, this i why plus '1'
+    var month = date.getMonth() + 1;
+    if (month<=9){
+        month = '0' + String(month)
+    }
+    var year = date.getFullYear();
+    var finaldate = day + "/" + month + "/" + year;
+    return finaldate
+}
 board.start = function(){
     $(document).ready(function(){
         $("#newpostdiv").hide();
@@ -132,6 +144,7 @@ board.start = function(){
         $(".addcomment").bind("click",board.addcomment);
         $(".confirmcommentbtn").bind("click",board.sendnewcomment);
         $(".clostcomment").bind("click",board.closenewcomment);
+        $("#newpostdate").text(board.formatDate(new Date))
     })
 
 
